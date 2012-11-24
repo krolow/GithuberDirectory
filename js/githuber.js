@@ -16,6 +16,8 @@ Githuber.prototype.search = function (city, language)
                 var user = response.data.users[i];
                 var languages = language.split(',');
                 if (user.language === language || language === "" || languages.indexOf(user.language) != -1) {
+                    //self.render(user);
+                    self.clear();
                     self.detail(user);                    
                 }
             }
@@ -58,6 +60,11 @@ Githuber.prototype.render = function (user)
 {
     $('ul').append('<li><img src="https://secure.gravatar.com/avatar/' + user.gravatar_id + '"/><a href="http://github.com/' + user.login + '">' + (user.name == undefined ? user.login : user.name) + '</a></li>');
 };
+
+Githuber.prototype.clear = function ()
+{
+    $('ul').html('');
+}
 
 $(document).ready(function () {
     var githuber = new Githuber;
